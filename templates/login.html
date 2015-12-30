@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content=""/>
+    <title>{% block title %} صفحه نخست {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!--keep the jquery above for internal js in extended pages-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    {%block blur_css%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {%endblock%}
+
+</head>
+<body style="background-image:url({% static 'img/college-student-with-laptop.jpg' %});background-attachment:fixed;background-size:cover;background-repeat: no-repeat">
+    <div id="login_warp">
+        <form action="{% url 'my_login' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <span class="login_span">نام کاربری</span>
+                <div class="login_input_holder">
+                    <span class="glyphicon glyphicon-user login-icon" aria-hidden="true"></span>
+                    {{ log_in_form.username }}
+                    </div>
+            </div>
+            <div class="row">
+                <span class="login_span">گذرواژه</span>
+                <div class="login_input_holder">
+                    <span class="glyphicon glyphicon-lock login-icon " aria-hidden="true"></span>
+                    {{ log_in_form.password }}
+                </div>
+            </div>
+            <input type="submit" value="ورود" class="login_btn btn btn-success">
+        </form>
+{#        <a href="{% url 'signup' %}">ثبت نام کنم</a>#}
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+/*--------------body and so on-*/
+
+@font-face {
+    font-family: 'BYekan';
+    src: url('../fonts/BYekan.eot?#') format('eot'), /* IE6–8 */ url('../fonts/BYekan.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/BYekan.svg') format('svg');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    font-family: BYekan;
+    /*color: white;*/
+}
+
+body {
+    height: 100%;
+}
+
+.fa-arrow-right {
+    display: none;
+}
+/*---------------changing bootstrap-----------*/
+.row{
+    margin-left:0;
+    margin-right: 0;
+}
+/*-----login page----------------*/
+#login_warp{
+    direction: ltr;
+    width:320px;
+    height:230px;
+    margin:50px auto;
+    background-color: rgba(243, 156, 18,0.8);
+    border-radius: 2px;
+}
+.row>span{
+    float:right;
+    padding:20px;
+    width: 100px;
+}
+.login_input_holder{
+    width: 200px;
+    padding:20px 0 20px 20px;
+    float:left;
+    min-height:34px;
+    position: relative;
+}
+.login-icon{
+    padding:0;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 30px;
+    right:-20px;
+    color: rgba(0,0,0,0.2);
+}
+#login_warp input[type="text"],input[type="password"]{
+    width:210px;
+    float: left;
+    padding:0;
+    padding-right:35px;/*to avoid text merging with icon*/
+}
+.login_btn{
+    width:290px;
+    margin: 30px 10px 20px;
+}
