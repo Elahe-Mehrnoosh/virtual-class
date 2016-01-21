@@ -78,26 +78,26 @@ TEMPLATES = [
 
 
 # Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "virtualclass",
+        'USER': "mehrnooshdsht",
+        'PASSWORD': '17mehrdsht',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': "virtual_class",
-#         'USER': "virtual_class",
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite',
+#         'USER': '',
 #         'PASSWORD': '',
 #         'HOST': '',
 #         'PORT': '',
-#     },
+#     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
-}
 
 
 
