@@ -21,20 +21,17 @@ def my_login(request):
         log_in_form = UserForm()
         username = request.POST['username']
         password = request.POST['password']
-        # user = User.objects.get(username=username)
-        user = get_user_model()
-        # user = authenticate(username=username, password=password)
-        # if user is not None:
-        #     if user.is_active:
-        #         login(request, user)
-        #         # return redirect(open_login_page)
-        #         return render(request, 'index.html')
+        this_user = User.objects.get(username=username)
+        # context = RequestContext(request, {
+        #         'this_user': this_user ,
+        #     })
+        # user = get_user_model()
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
                 login(request, user)
                 # return redirect(open_login_page)
-                return render(request, 'index.html')
+                return render(request, 'staff_main.html')
     else:
         log_in_form = UserForm()
     return render(request, 'login.html', {'log_in_form': log_in_form})

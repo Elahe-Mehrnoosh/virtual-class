@@ -30,8 +30,8 @@ body {
     direction: ltr;
     width:320px;
     height:230px;
-    margin:50px auto;
-    background-color: rgba(243, 156, 18,0.8);
+    margin:350px auto 0;
+    background-color: rgba(228, 241, 254,0.5);
     border-radius: 2px;
 }
 .row>span{
