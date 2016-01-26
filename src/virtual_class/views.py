@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from src.virtual_class.models import *
 from src.virtual_class.forms import *
+from datetime import date
 
 
 def open_login_page(request):
@@ -31,7 +32,7 @@ def my_login(request):
             if user.is_active:
                 login(request, user)
                 # return redirect(open_login_page)
-                return render(request, 'staff_main.html')
+                return render(request, 'staff_main.html', {'today': date.today()})
     else:
         log_in_form = UserForm()
     return render(request, 'login.html', {'log_in_form': log_in_form})
