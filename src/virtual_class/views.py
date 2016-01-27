@@ -6,18 +6,43 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from src.virtual_class.models import *
 from src.virtual_class.forms import *
+from forms import *
+from models import *
+
 from datetime import date
 
-
 def all_students(request):
-    return render(request, 'all_students.html')
+    if request.method == 'POST':
+        search_stu = SearchStudentForm()
+        student_number = request.POST['student_number']
+        last_name = request.POST['last_name']
+        if student_number != '':
+            all_list = Student.objects.filter(national_id=student_number).order_by('national_id')
+            if not all_list:
+                all_list = Student.objects.all().order_by('national_id')
+        else:
+            # if last_name != '':
+            #     user_list = User.objects.get(lastname__contains=last_name)
+            #     all_list = Student.objects.filter(account_no_id=user_list.id)
+            # else:
+            #     all_list = Student.objects.all().order_by('national_id')
+            all_list = Student.objects.all().order_by('national_id')
+    else:
+        search_stu = SearchStudentForm()
+        all_list = Student.objects.all().order_by('national_id')
+    number = len(all_list)
+    for x in range(0, number):
+        user_list = User.objects.filter(id=all_list[x].account_no_id)
+        parent_list = User.objects.filter(id=all_list[x].parent_na_id_id)
+    context = RequestContext(request, {
+            'student_list': all_list,
+            'user_list': user_list,
+            'parent_list': parent_list
+    })
+    return render(request, 'all_students.html', {'search_stu': search_stu}, context)
 
 def staff(request):
     return render(request, 'staff_main.html', {'today': date.today()})#today is used to show the today date in main page4
-
-def filter_student_show(request):
-    pass
-
 
 def my_login(request):
     if request.method == 'POST':
