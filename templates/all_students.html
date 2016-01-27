@@ -15,38 +15,64 @@
     <![endif]-->
 </head>
 <body>
+<a class="back btn btn-default" href="/staff">
+    بازگشت به صفحه اصلی
+</a>
+
 <div>
     <h3>لیست دانش آموزان ترم جاری</h3>
 </div>
 <div>
-    <p class="inner-search-by">
-        جست و جو بر اساس
-    </p>
-     <br>
-<span class="inner-search-by">
+    <form action="{% url 'all_students' %}" method="POST">
+        {% csrf_token %}
+            <span class="inner-search-by">
     شماره ملی
 </span>
-    <input type="text" class="form-control inner-search-by">
-<span class="inner-search-by">
-    نام یا نام خانوادگی
+        {{ search_stu.student_number }}
+            <span class="inner-search-by">
+    قسمتی از نام خانوادگی
 </span>
-    <input type="text" class="form-control inner-search-by">
-
-    <div class="radio inner-search-by">
-        <label><input type="radio" name="optradio"> صعودی</label>
-    </div>
-    <div class="radio inner-search-by">
-        <label><input type="radio" name="optradio">نزولی</label>
-    </div>
-    <button class="btn btn-default show">نمایش</button>
+        {{ search_stu.last_name }}
+        {#        {{ search_stu.sort }}#}
+        <input class="btn btn-default show" type="submit" value="نمایش">
+    </form>
 </div>
 <div>
-    <br>  <br>
-    <p dir="rtl">
+    <p>
         در صورت جست و جو فقط بر اساس قسمتی از نام مقادیر بر اساس نام خانوادگی مرتب می‌شوند.در غیر اینصورت مرتب سازی بر
         اساس
         شماره ملی دانش آموز می‌باشد.
     </p>
+<p>
+    امکان جست و جو با نام خانوادگی هنوز راه اندازی نشده است.
+</p>
+
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+                <th>شماره ملی</th>
+                <th>نام پدر </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for stu in student_list %}
+                {% for my_user in user_list %}
+                    {% for parent in parent_list %}
+                        <tr>
+                            <td>{{ my_user.first_name }}</td>
+                            <td>{{ my_user.last_name }}</td>
+                            <td>{{ stu.national_id }}</td>
+                            <td>{{ parent.first_name }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
