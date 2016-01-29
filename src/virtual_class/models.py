@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager
 from datetime import date
+from django.utils.encoding import force_str, force_text
 
 
 #CharField (and its subclasses) require a max_length argument which specifies the size of the VARCHAR database field used to store the data
@@ -27,6 +28,14 @@ class Employee(AbstractBaseUser):
 class Teacher(AbstractBaseUser):
     account_no = models.ForeignKey(User, unique=True)
     national_id = models.IntegerField(null=False, primary_key=True)
+
+    def __repr__(self):
+            return 'Teacher(national_id:%s,account_no:%s)' % (self.national_id,self.account_no)
+    # def __repr__ (self):
+        # return '< %s>' % self.national_id
+        # return '%s(%r)' % (self.__class__, self.national_id, self.account_no)
+        # return 'Teacher[national_id:%s,account_no:%s]' % (self.national_id,self.account_no)
+        # return "<{} {}: {}>".format(self.__class__.__name__, self.pk, self)
 
 
 class Manager(AbstractBaseUser):

@@ -11,6 +11,28 @@ from models import *
 
 from datetime import date
 
+
+def all_courses(request):
+    pass
+
+def add_course(request):
+    if request.method == 'POST':
+        add_new_course = SuggestedCourse(request.POST)
+        if add_new_course.is_valid():
+            sug_co_term_no = add_new_course.cleaned_data['term_no']
+            tea_no = request.POST['teacher_national_id']
+            teacher = Teacher.objects.get(national_id=tea_no)
+            sug_co_exam_date = add_new_course.cleaned_data['exam_date']
+            co_no = request.POST['course_no']
+            course_id = Course.objects.get(name=co_no)
+            # sug_co_co_no = add_new_course.cleaned_data[course_id]
+            Suggested_course.objects.create(term_nu = sug_co_term_no, teacher = teacher, exam_date = sug_co_exam_date,course_no = course_id )
+            # course_no = sug_co_co_no
+            return render(request, 'add_course.html', {'add_new_course': add_new_course})
+    else:
+        add_new_course = SuggestedCourse()
+    return render(request, 'add_course.html', {'add_new_course': add_new_course})
+
 def all_students(request):
     if request.method == 'POST':
         search_stu = SearchStudentForm()
