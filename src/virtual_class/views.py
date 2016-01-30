@@ -8,12 +8,41 @@ from src.virtual_class.models import *
 from src.virtual_class.forms import *
 from forms import *
 from models import *
-
+from itertools import chain
 from datetime import date
+from django.db.models import Q
 
 
-def all_courses(request):
-    pass
+def all_course(request):
+    if request.method == 'POST':
+        search_cou = SearchCourseForm()
+        course_name = request.POST['course_name']
+        if course_name != '':
+            found_course = Course.objects.values_list('id', flat=True).filter(name=course_name)
+            all_list = Suggested_course.objects.filter(course_no=found_course)
+            if not all_list:
+                all_list = Suggested_course.objects.all()
+                # found_course = Course.objects.values_list('name', flat=True).filter(name=course_name)
+        else:
+            all_list = Suggested_course.objects.all()
+    else:
+        search_cou = SearchCourseForm()
+        all_list = Suggested_course.objects.all()
+    name_list = Course.objects.filter(id=all_list[0].course_no.id)
+    number = len(all_list)
+    for x in range(0, number):
+        # name_list = Course.objects.filter(id=all_list[x].course_no.id)
+        name_list = Course.objects.filter(id__in=all_list)
+        # teacher_list = User.objects.filter(id=all_list[x].teacher.id)
+    context = RequestContext(request, {
+        'course_list': all_list,
+        'name_list': name_list,
+        # 'result_list': list(chain(all_list, name_list)),
+        'result_list' : list(all_list) + list(name_list)
+
+    })
+    return render(request, 'all_courses.html', {'search_cou': search_cou}, context)
+
 
 def add_course(request):
     if request.method == 'POST':
@@ -55,11 +84,11 @@ def all_students(request):
     number = len(all_list)
     for x in range(0, number):
         user_list = User.objects.filter(id=all_list[x].account_no_id)
-        parent_list = User.objects.filter(id=all_list[x].parent_na_id_id)
+        # parent_list = User.objects.filter(id=all_list[x].parent_na_id_id)
     context = RequestContext(request, {
             'student_list': all_list,
             'user_list': user_list,
-            'parent_list': parent_list
+            # 'parent_list': parent_list
     })
     return render(request, 'all_students.html', {'search_stu': search_stu}, context)
 

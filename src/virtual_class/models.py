@@ -15,7 +15,7 @@ class Student(AbstractBaseUser):
     # parent_na_id = models.ForeignKey(Parent, to_field='national_id')#to use an specific pi
     total_average = models.FloatField()
     registration_date = models.DateField(default=date.today())
-    parent_name = models.CharField(null=False)
+    parent_name = models.CharField(null=False, max_length=30)
     tell_number = models.IntegerField()
 
 
@@ -55,9 +55,9 @@ class Suggested_course(models.Model):
 class Registered_course(models.Model):
     student = models.ForeignKey(Student, to_field='national_id')
     suggested_cou = models.ForeignKey(Suggested_course)
-    term_no = models.IntegerField(null=False)
-    top_grade = models.IntegerField()
-    second_top_grade = models.IntegerField()
+    # term_no = models.IntegerField(null=False)
+    grade = models.IntegerField()
+    # second_top_grade = models.IntegerField()
 
 
 class Practice(models.Model):

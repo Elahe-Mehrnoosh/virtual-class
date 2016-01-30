@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^staff/logout/$', 'django.contrib.auth.views.logout',{'next_page':"my_login" }),
     url(r'^staff/all_students/$', views.all_students, name="all_students"),
     url(r'^staff/add_course/$', views.add_course, name="add_course"),
+    url(r'^staff/all_course/$', views.all_course, name="all_course"),
 ]

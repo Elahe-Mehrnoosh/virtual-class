@@ -43,9 +43,10 @@
         اساس
         شماره ملی دانش آموز می‌باشد.
     </p>
-<p>
-    امکان جست و جو با نام خانوادگی هنوز راه اندازی نشده است.
-</p>
+
+    <p>
+        امکان جست و جو با نام خانوادگی هنوز راه اندازی نشده است.
+    </p>
 
     <div>
         <table class="table table-striped">
@@ -54,20 +55,18 @@
                 <th>نام</th>
                 <th>نام خانوادگی</th>
                 <th>شماره ملی</th>
-                <th>نام پدر </th>
+                <th>نام پدر</th>
             </tr>
             </thead>
             <tbody>
-            {% for stu in student_list %}
-                {% for my_user in user_list %}
-                    {% for parent in parent_list %}
-                        <tr>
-                            <td>{{ my_user.first_name }}</td>
-                            <td>{{ my_user.last_name }}</td>
-                            <td>{{ stu.national_id }}</td>
-                            <td>{{ parent.first_name }}</td>
-                        </tr>
-                    {% endfor %}
+            {% for my_user in user_list %}
+                 {% for stu in student_list %}
+                    <tr>
+                        <td>{{ my_user.first_name }}</td>
+                        <td>{{ my_user.last_name }}</td>
+                        <td>{{ stu.national_id }}</td>
+                        <td>{{ stu.parent_name }}</td>
+                    </tr>
                 {% endfor %}
             {% endfor %}
             </tbody>

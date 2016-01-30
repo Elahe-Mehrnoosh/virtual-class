@@ -31,3 +31,6 @@ class SuggestedCourse(forms.Form):
     # course_no = forms.ModelMultipleChoiceField(queryset=Course.objects.all().values_list('name'), label='course_name',
     #                                            widget=forms.Select(attrs={'class': 'form-control inner-search-by'}))
     course_no = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+
+class SearchCourseForm(forms.Form):
+    course_name = forms.CharField(label='term_no', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
