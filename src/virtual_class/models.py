@@ -7,18 +7,16 @@ from django.utils.encoding import force_str, force_text
 #CharField (and its subclasses) require a max_length argument which specifies the size of the VARCHAR database field used to store the data
 #the primary auto keys in ldm are not mentioned in models because we use django id which is an auto key itself
 
-class Parent(AbstractBaseUser):
-    account_no = models.ForeignKey(User, unique=True)
-    national_id = models.IntegerField(null=False, primary_key=True)
-    tell_number = models.IntegerField()
 
 
 class Student(AbstractBaseUser):
     account_no = models.ForeignKey(User, unique=True)#to use django default auto id
     national_id = models.IntegerField(null=False, primary_key=True)
-    parent_na_id = models.ForeignKey(Parent, to_field='national_id')#to use an specific pi
+    # parent_na_id = models.ForeignKey(Parent, to_field='national_id')#to use an specific pi
     total_average = models.FloatField()
     registration_date = models.DateField(default=date.today())
+    parent_name = models.CharField(null=False)
+    tell_number = models.IntegerField()
 
 
 class Employee(AbstractBaseUser):
