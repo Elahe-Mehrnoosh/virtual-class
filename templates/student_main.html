@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta name="keywords" content=""/>
-    <title>{% block title %} کارمندان  {% endblock %}</title>
+    <title>{% block title %} دانش آموز {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/staff/staff.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}" type="text/css"/>
@@ -38,9 +38,8 @@
                    data-parent="#sidebar-wrapper">امور دانش آموز</a>
 
                 <div class="collapse" id="submenu1"><i class="fa fa-caret-down"></i>
-                    <a href="all_students" class="list-group-item opened" data-parent="#submenu1">نمایش
-                        لیست</a>
-                    <a href="add_student" class="list-group-item opened" data-parent="#submenu1">اضافه کردن</a>
+                    <a href="#" class="list-group-item-opened" data-parent="#submenu1">کارنامه</a>
+                    <a href="#" class="list-group-item opened" data-parent="#submenu1">تمرین</a>
                 </div>
 
             </li>
@@ -51,21 +50,9 @@
                 <div class="collapse" id="submenu2"><i class="fa fa-caret-down"></i>
                     <a href="#" class="list-group-item opened" data-parent="#submenu2" >نمایش
                         لیست</a>
-                    <a href="add_course" class="list-group-item opened" data-parent="#submenu2">اضافه کردن</a>
                 </div>
 
             </li>
-{#            <li>#}
-{#                <a href="#submenu3" class="list-group-item list-group-item-success" data-toggle="collapse"#}
-{#                   data-parent="#sidebar-wrapper">ترم های گذشته</a>#}
-{##}
-{#                <div class="collapse" id="submenu3"><i class="fa fa-caret-down"></i>#}
-{#                    <a href="#" class="list-group-item opened" data-parent="#submenu3">دانش#}
-{#                        آموزان</a>#}
-{#                    <a href="previews_term" class="list-group-item opened" data-parent="#submenu3">دروس</a>#}
-{#                </div>#}
-{##}
-{#            </li>#}
 
         </ul>
     </div>
