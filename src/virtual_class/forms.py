@@ -32,5 +32,13 @@ class SuggestedCourse(forms.Form):
     #                                            widget=forms.Select(attrs={'class': 'form-control inner-search-by'}))
     course_no = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
 
+class AddStudentForm(forms.Form):
+    first_name = forms.CharField(label='first_name', widget=forms.CharField)
+    last_name = forms.CharField(label='last_name', widget=forms.CharField)
+    national_id = forms.IntegerField(label='national_id', widget=forms.NumberInput)
+    tell_number = forms.IntegerField(label='tell_number', widget=forms.NumberInput)
+    parent_name = forms.CharField(label='parent_name', widget=forms.CharField)
+
 class SearchCourseForm(forms.Form):
-    course_name = forms.CharField(label='term_no', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+     course_name = forms.CharField(label='course_name', widget=forms.TextInput)
+     term_number = forms.DateField(label='term_number', widget=forms.IntegerField)

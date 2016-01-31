@@ -8,41 +8,49 @@ from src.virtual_class.models import *
 from src.virtual_class.forms import *
 from forms import *
 from models import *
-from itertools import chain
+
 from datetime import date
-from django.db.models import Q
-
-
-def all_course(request):
+def previews_term(request):
     if request.method == 'POST':
-        search_cou = SearchCourseForm()
-        course_name = request.POST['course_name']
-        if course_name != '':
-            found_course = Course.objects.values_list('id', flat=True).filter(name=course_name)
-            all_list = Suggested_course.objects.filter(course_no=found_course)
-            if not all_list:
-                all_list = Suggested_course.objects.all()
-                # found_course = Course.objects.values_list('name', flat=True).filter(name=course_name)
-        else:
-            all_list = Suggested_course.objects.all()
-    else:
-        search_cou = SearchCourseForm()
-        all_list = Suggested_course.objects.all()
-    name_list = Course.objects.filter(id=all_list[0].course_no.id)
-    number = len(all_list)
-    for x in range(0, number):
-        # name_list = Course.objects.filter(id=all_list[x].course_no.id)
-        name_list = Course.objects.filter(id__in=all_list)
-        # teacher_list = User.objects.filter(id=all_list[x].teacher.id)
-    context = RequestContext(request, {
-        'course_list': all_list,
-        'name_list': name_list,
-        # 'result_list': list(chain(all_list, name_list)),
-        'result_list' : list(all_list) + list(name_list)
+        search_co = SearchCourseForm(request.POST)
+        course = Course()
+        course.name = request.POST['course_name']
+        suggested = Suggested_course(request.POST)
+        suggested.term_nu = request.POST['term_number']
+        if course.name !='':
+            all_courses = Course.objects.filter(course.name).order_by('course_name')
+            if not  all_courses:
+                all_courses= course.objects.all().order_by('course_name')
+                number= len(all_courses)
+                for x in range(0,number):
+                    suggested_list= suggested.objects.filter(id=all_courses[x].course_no)
+                    context= RequestContext(request, {})
+        return render(request, 'previews_term.html')
 
-    })
-    return render(request, 'all_courses.html', {'search_cou': search_cou}, context)
 
+
+def add_student(request):
+    if request.method == 'POST':
+        add_stu = AddStudentForm(request.POST)
+        student = Student()
+        user = User()
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.username = request.POST['user_name']
+        student.national_id = request.POST['national_id']
+        student.parent_name = request.POST['parent_name']
+        student.tell_number = request.POST['tell_number']
+        student.total_average = 0
+        user.save()
+        student.account_no = user
+        student.save()
+    return render(request, 'add_student.html')
+
+
+
+
+def all_courses(request):
+    pass
 
 def add_course(request):
     if request.method == 'POST':
@@ -84,11 +92,11 @@ def all_students(request):
     number = len(all_list)
     for x in range(0, number):
         user_list = User.objects.filter(id=all_list[x].account_no_id)
-        # parent_list = User.objects.filter(id=all_list[x].parent_na_id_id)
+        parent_list = User.objects.filter(id=all_list[x].parent_na_id_id)
     context = RequestContext(request, {
             'student_list': all_list,
             'user_list': user_list,
-            # 'parent_list': parent_list
+            'parent_list': parent_list
     })
     return render(request, 'all_students.html', {'search_stu': search_stu}, context)
 
