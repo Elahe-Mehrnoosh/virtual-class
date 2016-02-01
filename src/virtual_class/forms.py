@@ -30,7 +30,11 @@ class SuggestedCourse(forms.Form):
     exam_date = forms.DateField(label='exam_date', widget=forms.DateInput(attrs={'class': 'form-control inner-search-by'}))
     # course_no = forms.ModelMultipleChoiceField(queryset=Course.objects.all().values_list('name'), label='course_name',
     #                                            widget=forms.Select(attrs={'class': 'form-control inner-search-by'}))
-    course_no = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+    course_no = forms.CharField(label='course_no', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
 
 class SearchCourseForm(forms.Form):
-    course_name = forms.CharField(label='term_no', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+    course_name = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+
+class RegCourseStudent(forms.Form):
+    course_name = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+    student_nat_id = forms.IntegerField(label='student_nat_id', widget=forms.NumberInput(attrs={'class': 'form-control inner-search-by'}))

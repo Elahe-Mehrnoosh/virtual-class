@@ -10,8 +10,10 @@ from forms import *
 from models import *
 from itertools import chain
 from datetime import date
-from django.db.models import Q
 
+
+def add_course_student(request):
+    return render(request, 'add_course_student.html')
 
 def all_course(request):
     if request.method == 'POST':
