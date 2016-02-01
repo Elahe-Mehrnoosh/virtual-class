@@ -10,24 +10,6 @@ from forms import *
 from models import *
 
 from datetime import date
-def previews_term(request):
-    if request.method == 'POST':
-        search_co = SearchCourseForm(request.POST)
-        course = Course()
-        course.name = request.POST['course_name']
-        suggested = Suggested_course(request.POST)
-        suggested.term_nu = request.POST['term_number']
-        if course.name !='':
-            all_courses = Course.objects.filter(course.name).order_by('course_name')
-            if not  all_courses:
-                all_courses= course.objects.all().order_by('course_name')
-                number= len(all_courses)
-                for x in range(0,number):
-                    suggested_list= suggested.objects.filter(id=all_courses[x].course_no)
-                    context= RequestContext(request, {})
-        return render(request, 'previews_term.html')
-
-
 
 def add_student(request):
     if request.method == 'POST':
@@ -92,11 +74,11 @@ def all_students(request):
     number = len(all_list)
     for x in range(0, number):
         user_list = User.objects.filter(id=all_list[x].account_no_id)
-        parent_list = User.objects.filter(id=all_list[x].parent_na_id_id)
+        # parent_list = User.objects.filter(id=all_list[x].parent_na_id_id)
     context = RequestContext(request, {
             'student_list': all_list,
             'user_list': user_list,
-            'parent_list': parent_list
+            # 'parent_list': parent_list
     })
     return render(request, 'all_students.html', {'search_stu': search_stu}, context)
 

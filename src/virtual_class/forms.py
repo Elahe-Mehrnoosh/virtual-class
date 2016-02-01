@@ -40,5 +40,8 @@ class AddStudentForm(forms.Form):
     parent_name = forms.CharField(label='parent_name', widget=forms.CharField)
 
 class SearchCourseForm(forms.Form):
-     course_name = forms.CharField(label='course_name', widget=forms.TextInput)
-     term_number = forms.DateField(label='term_number', widget=forms.IntegerField)
+    course_name = forms.CharField(label='course_name', widget=forms.TextInput)
+    term_number = forms.DateField(label='term_number', widget=forms.IntegerField)
+class CourseForm(forms.Form):
+    course_name = forms.CharField(label='course_name', widget=forms.TextInput)
+    course_id = forms.IntegerField(label='course_id', widget=forms.NumberInput)
