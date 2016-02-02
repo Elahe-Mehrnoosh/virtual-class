@@ -16,4 +16,8 @@ urlpatterns = [
     url(r'^staff/add_course/$', views.add_course, name="add_course"),
     url(r'^staff/all_course/$', views.all_course, name="all_course"),
     url(r'^staff/add_course_student/$', views.add_course_student, name="add_course_student"),
+
+
+    url(r'^staff/add_student/$', views.add_student, name="add_student"),
+
 ]

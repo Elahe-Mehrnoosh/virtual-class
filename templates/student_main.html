@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta name="keywords" content=""/>
-    <title>{% block title %} کارمندان  {% endblock %}</title>
+    <title>{% block title %} دانش آموز {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/staff/staff.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}" type="text/css"/>
@@ -38,9 +38,8 @@
                    data-parent="#sidebar-wrapper">امور دانش آموز</a>
 
                 <div class="collapse" id="submenu1"><i class="fa fa-caret-down"></i>
-                    <a href="all_students" class="list-group-item opened" data-parent="#submenu1">نمایش
-                        لیست</a>
-                    <a href="add_student" class="list-group-item opened" data-parent="#submenu1">اضافه کردن</a>
+                    <a href="#" class="list-group-item-opened" data-parent="#submenu1">کارنامه</a>
+                    <a href="#" class="list-group-item opened" data-parent="#submenu1">تمرین</a>
                 </div>
 
             </li>
@@ -49,17 +48,10 @@
                    data-parent="#sidebar-wrapper">دروس این ترم</a>
 
                 <div class="collapse" id="submenu2"><i class="fa fa-caret-down"></i>
-                    <a href="all_course" class="list-group-item opened" data-parent="#submenu2" >نمایش
+                    <a href="#" class="list-group-item opened" data-parent="#submenu2" >نمایش
                         لیست</a>
-                    <a href="add_course" class="list-group-item opened" data-parent="#submenu2">اضافه کردن</a>
-{#                    <a href="Result" class="list-group-item opened" data-parent="#submenu2"> کارنامه </a>#}
                 </div>
 
-            </li>
-            <li>
-                <a href="add_course_student" >
-اضافه کردن درس به دانش آموز
-                </a>
             </li>
 
         </ul>

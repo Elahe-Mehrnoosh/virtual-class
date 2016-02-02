@@ -12,6 +12,7 @@ from itertools import chain
 from datetime import date
 from Choices import *
 
+from datetime import date
 
 def add_course_student(request):
     all_stu = Student.objects.all().order_by('national_id').reverse()
@@ -45,6 +46,23 @@ def add_course_student(request):
     })
     return render(request, 'add_course_student.html',context)
 
+def add_student(request):
+    if request.method == 'POST':
+        add_stu = AddStudentForm(request.POST)
+        student = Student()
+        user = User()
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.username = request.POST['user_name']
+        student.national_id = request.POST['national_id']
+        student.parent_name = request.POST['parent_name']
+        student.tell_number = request.POST['tell_number']
+        student.total_average = 0
+        user.save()
+        student.account_no = user
+        student.save()
+    return render(request, 'add_student.html')
+
 def all_course(request):
     if request.method == 'POST':
         search_cou = SearchCourseForm()
@@ -74,7 +92,6 @@ def all_course(request):
 
     })
     return render(request, 'all_courses.html', {'search_cou': search_cou}, context)
-
 
 def add_course(request):
     if request.method == 'POST':
