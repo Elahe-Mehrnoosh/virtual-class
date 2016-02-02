@@ -10,10 +10,40 @@ from forms import *
 from models import *
 from itertools import chain
 from datetime import date
+from Choices import *
 
 
 def add_course_student(request):
-    return render(request, 'add_course_student.html')
+    all_stu = Student.objects.all().order_by('national_id').reverse()
+    # user_list = ''
+    # sug_list = Suggested_course.objects.all()
+    # name_list = ''
+    # numbery = len(sug_list)
+    # for y in range(0, numbery):
+    #     tempy = Course.objects.filter(id=sug_list[y].course_no.id)
+    #     name_list = list(chain(name_list, tempy))
+    if request.method == 'POST':
+        add_new_reg_co = RegCourseStudent(request.POST)
+        # if add_new_reg_co.is_valid():
+        lesson = request.POST['lesson_name']
+        found_course = Course.objects.values_list('id', flat=True).filter(name=lesson)
+        sugg_cou_id = Suggested_course.objects.filter(course_no=found_course)
+        temp = sugg_cou_id[0].id
+        student_na_id = request.POST['student_id']
+        Registered_course.objects.create(suggested_cou_id = temp, student_id = student_na_id ,grade='0')
+    else:
+        add_new_reg_co = RegCourseStudent()
+    # numberx = len(all_stu)
+    # for x in range(0, numberx):
+    #     tempx = User.objects.filter(id=all_stu[x].account_no_id)
+    #     user_list = list(chain(user_list, tempx))
+    context = RequestContext(request, {
+        # 'user_list' : user_list,
+        # 'name_list' : name_list,
+        # 'sug_list' : sug_list,
+        'add_new_reg_co':add_new_reg_co
+    })
+    return render(request, 'add_course_student.html',context)
 
 def all_course(request):
     if request.method == 'POST':

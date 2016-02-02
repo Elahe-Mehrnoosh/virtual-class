@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from Choices import *
 from models import Course
-
+from Choices import *
 #
 # choices = [course.name for course in Course.objects.all()]
 
@@ -36,5 +36,5 @@ class SearchCourseForm(forms.Form):
     course_name = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
 
 class RegCourseStudent(forms.Form):
-    course_name = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
-    student_nat_id = forms.IntegerField(label='student_nat_id', widget=forms.NumberInput(attrs={'class': 'form-control inner-search-by'}))
+    lesson_name = forms.CharField(label='lesson_name',widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+    student_id = forms.IntegerField(label='student_id', widget=forms.NumberInput(attrs={'class': 'form-control inner-search-by'}))

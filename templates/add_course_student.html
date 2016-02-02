@@ -23,12 +23,36 @@
     <h3>اضافه شدن درس به دانش آموزان</h3>
 </div>
 <div>
-    <form action="{% url 'add_course_student' %}" method="POST">
-        {% csrf_token %}
-        <span></span>
+    <div style="width: 100%;height: 200px">
+        <form action="{% url 'add_course_student' %}" method="POST">
+            {% csrf_token %}
+            <span></span>
+            {#                {% for co_name in name_list %}#}
+            <div style="width:100%">{{ co_name.name }}
+                {#                    <input type="checkbox" value="">#}
+                <div style="width: 100%;height: 50px">
+                    {{ add_new_reg_co.student_id }}
+                    شماره ملی دانش آموز
 
-        <input class="btn btn-default show" type="submit" value="افزودن">
-    </form>
+                </div>
+                <div style="width: 100%;height: 50px">
+                    {{ add_new_reg_co.lesson_name }}
+                    نام درس
+
+                </div>
+
+                {#                    {{  add_new_reg_co.lesson1 }}#}
+                {#                    {{  add_new_reg_co.lesson2 }}#}
+                {#                    {{  add_new_reg_co.lesson3 }}#}
+                {#                    {{  add_new_reg_co.lesson4 }}#}
+                {#                    {{  add_new_reg_co.lesson5 }}#}
+                {#                    {{  add_new_reg_co.lesson6 }}#}
+                {#                    {{  add_new_reg_co.lesson7 }}#}
+            </div>
+            {#                {% endfor %}#}
+            <input class="btn btn-default show" type="submit" value="افزودن">
+        </form>
+    </div>
 </div>
 </body>
 </html>
