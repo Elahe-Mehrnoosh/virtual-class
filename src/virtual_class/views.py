@@ -74,7 +74,8 @@ def all_course(request):
         'name_list': name_list,
         # 'result_list': list(chain(all_list, name_list)),
         'result_list' : list(all_list) + list(name_list)
-
+    })
+    return render(request, 'all_courses.html', {'search_cou': search_cou}, context)
 
 
 def all_courses(request):
