@@ -20,7 +20,7 @@
 </a>
 
 <div>
-    <h3>لاضافه کردن درس به ترم جاری</h3>
+    <h3> اضافه کردن درس به ترم جاری </h3>
 </div>
 <div>
     <form action="{% url 'add_course' %}" method="POST">
@@ -45,5 +45,28 @@
         <input class="btn btn-default show" type="submit" value="افزودن">
     </form>
 </div>
+<br><br>
+<div>
+{#        <table class="table table-striped" dir="rtl">#}
+{#            <thead>#}
+{#             <tr>#}
+{#                <th style="text-align: right">  شماره ترم  </th>#}
+{#                 <th style="text-align: right">   اسم درس  </th>#}
+{#                 <th style="text-align: right">   شماره ملی استاد ارائه دهنده   </th>#}
+{#                 <th style="text-align: right"> تاریخ امتحان  </th>#}
+{#            </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#            {% for add_new_course in course_list %}#}
+{#                <tr>#}
+{#                <td>{{  add_new_course.sug_co_term_no }}</td>#}
+{#                <td>{{  add_new_course.co_no }}</td>#}
+{#                <td>{{  add_new_course.tea_no }}</td>#}
+{#                <td>{{  add_new_course.sug_co_exam_date }}</td>#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+    </div>
 </body>
 </html>
