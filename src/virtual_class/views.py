@@ -204,7 +204,7 @@ def student_main(request):
     found_course =''
     for z in range(0,numberz):
         # sug_cou = Suggested_course.objects.filter(id=Reg_cou_sug_co_id[z].id)
-        found_course = list(Course.objects.filter(id=Suggested_course.objects.values_list('id').filter(id=Reg_cou_sug_co_id[z].id)))+list (found_course)
+        found_course = list(Course.objects.filter(id=Suggested_course.objects.values_list('id').filter(id=Reg_cou_sug_co_id[(numberz-1)-z].id)))+list (found_course)
     # for w in range(0,numberz):
     #     found_course = chain(Course.objects.filter(id=sug_cou[w].id),found_course)
     context = RequestContext(request, {
