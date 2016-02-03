@@ -47,5 +47,13 @@ class RegCourseStudent(forms.Form):
     student_id = forms.IntegerField(label='student_id', widget=forms.NumberInput(attrs={'class': 'form-control inner-search-by'}))
 
 class CourseForm(forms.Form):
-    course_name = forms.CharField(label='course_name', widget=forms.TextInput)
-    course_id = forms.IntegerField(label='course_id', widget=forms.NumberInput)
+    course_name = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+    course_id = forms.IntegerField(label='course_id', widget=forms.NumberInput(attrs={'class': 'form-control inner-search-by'}))
+
+class GiveGrade(forms.Form):
+    national_id = forms.IntegerField(label='national_id', widget=forms.NumberInput(attrs={'class': 'form-control inner-search-by'}))
+    course_name = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))
+    grade = forms.IntegerField(label='grade', widget=forms.NumberInput(attrs={'class': 'form-control inner-search-by'}))
+
+class SearchGrade(forms.Form):
+    course_name = forms.CharField(label='course_name', widget=forms.TextInput(attrs={'class': 'form-control inner-search-by'}))

@@ -56,7 +56,7 @@ class Registered_course(models.Model):
     student = models.ForeignKey(Student, to_field='national_id')
     suggested_cou = models.ForeignKey(Suggested_course)
     # term_no = models.IntegerField(null=False)
-    grade = models.IntegerField()
+    grade = models.IntegerField(null=True)
     # second_top_grade = models.IntegerField()
 
 

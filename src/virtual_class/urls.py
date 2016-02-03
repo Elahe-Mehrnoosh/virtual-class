@@ -16,8 +16,10 @@ urlpatterns = [
     url(r'^staff/add_course/$', views.add_course, name="add_course"),
     url(r'^staff/all_course/$', views.all_course, name="all_course"),
     url(r'^staff/add_course_student/$', views.add_course_student, name="add_course_student"),
-
-
     url(r'^staff/add_student/$', views.add_student, name="add_student"),
+    url(r'^staff/teacher_main/$', views.teacher_main, name="teacher_main"),
+    url(r'^staff/teacher_main/logout/$', 'django.contrib.auth.views.logout',{'next_page':"my_login" }),
+    url(r'^staff/student_main/$', views.student_main, name="student_main"),
+    url(r'^staff/student_main/logout/$', 'django.contrib.auth.views.logout',{'next_page':"my_login" }),
 
 ]

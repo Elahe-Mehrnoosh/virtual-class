@@ -23,71 +23,28 @@
 
 </head>
 <body>
-<div id="warpper">
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <div>
-                    {{ request.user.username.title }}
-                    خوش آمدید
-                </div>
-            </li>
-            <li>
-                <a href="#submenu1" class="list-group-item list-group-item-success" data-toggle="collapse"
-                   data-parent="#sidebar-wrapper">امور دانش آموز</a>
+<h3>کارنامه</h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for lesson in reg_all_courses %}
+        <tr>
+            <th> {{ lesson.grade }} </th>
+        </tr>
+    {% endfor %}
+    {% for a in found_course %}
+        <tr>
+            <th>{{ a.name }}</th>
+        </tr>
+    {% endfor %}
 
-                <div class="collapse" id="submenu1"><i class="fa fa-caret-down"></i>
-                    <a href="#" class="list-group-item-opened" data-parent="#submenu1">کارنامه</a>
-                    <a href="#" class="list-group-item opened" data-parent="#submenu1">تمرین</a>
-                </div>
 
-            </li>
-            <li>
-                <a href="#submenu2" class="list-group-item list-group-item-success" data-toggle="collapse"
-                   data-parent="#sidebar-wrapper">دروس این ترم</a>
-
-                <div class="collapse" id="submenu2"><i class="fa fa-caret-down"></i>
-                    <a href="#" class="list-group-item opened" data-parent="#submenu2" >نمایش
-                        لیست</a>
-                </div>
-
-            </li>
-
-        </ul>
-    </div>
-    <!-- /#sidebar-wrapper -->
-    <!--alarm and date-->
-    <div id="left-side">
-        <div id="date-box">
-
-                <div class="box-head">
-                    <h2>امروز</h2>
-                </div>
-            {{ today }}
-            </div>
-
-            <div id="date-box">
-
-                <div class="box-head">
-                    <h2>اعلانات</h2>
-                </div>
-                شما هیچ پیغامی ندارید.
-
-            </div>
-        <!--alarm and date finished-->
-        <a class="leave btn btn-danger" href="logout/">
-        خروج
-        </a>
-    </div>
-</div>
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
+    </tbody>
+</table>
 
 
 </body>
